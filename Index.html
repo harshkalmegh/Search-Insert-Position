@@ -21,21 +21,48 @@
    */
   // Version 1
   var searchInsert = function (nums, target) {
-    if (nums.indexOf(target) !== -1) {
-      return nums.indexOf(target);
-    }
-    nums.push(target);
+    // Version 1
+    // if (nums.indexOf(target) !== -1) {
+    //   return nums.indexOf(target);
+    // }
+    // nums.push(target);
+    // for (let i = 0; i <= nums.length; i++) {
+    //   for (let j = i + 1; j <= nums.length; j++) {
+    //     if (nums[i] > nums[j]) {
+    //       let arr = nums[i];
+    //       nums[i] = nums[j];
+    //       nums[j] = arr;
+    //     }
+    //   }
+    // }
+    // return nums.indexOf(target);
+
+    // Version 2
+    let value = 0;
     for (let i = 0; i <= nums.length; i++) {
-      for (let j = i + 1; j <= nums.length; j++) {
-        if (nums[i] > nums[j]) {
-          let arr = nums[i];
-          nums[i] = nums[j];
-          nums[j] = arr;
+      if (nums[i] === target) {
+        value = i;
+        return value;
+      } else {
+        nums.push(target);
+        for (let i = 0; i <= nums.length; i++) {
+          for (let j = i + 1; j <= nums.length; j++) {
+            if (nums[i] > nums[j]) {
+              let arr = nums[i];
+              nums[i] = nums[j];
+              nums[j] = arr;
+            }
+          }
+        }
+        for (let i = 0; i <= nums.length; i++) {
+          if (nums[i] === target) {
+            value = i;
+          }
         }
       }
     }
-    return nums.indexOf(target);
+    return value;
   };
 
-  console.log(searchInsert([3, 5, 7, 9, 10], 8));
+  console.log(searchInsert([3, 5, 7, 9, 10], 6));
 </script>
