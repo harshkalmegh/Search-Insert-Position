@@ -19,4 +19,23 @@
    * 5. get target's index by indexOf
    * 6. return index
    */
+  // Version 1
+  var searchInsert = function (nums, target) {
+    if (nums.indexOf(target) !== -1) {
+      return nums.indexOf(target);
+    }
+    nums.push(target);
+    for (let i = 0; i <= nums.length; i++) {
+      for (let j = i + 1; j <= nums.length; j++) {
+        if (nums[i] > nums[j]) {
+          let arr = nums[i];
+          nums[i] = nums[j];
+          nums[j] = arr;
+        }
+      }
+    }
+    return nums.indexOf(target);
+  };
+
+  console.log(searchInsert([3, 5, 7, 9, 10], 8));
 </script>
